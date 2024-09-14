@@ -28,10 +28,10 @@ public class Main {
 
         for (int i = 0; i < 9; i++) {
             JButton button = new JButton();
-            button.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
+            button.setBorder(BorderFactory.createLineBorder(Color.black));
             button.setBackground(Color.WHITE);
             int finalI = i;
-            button.setFont(new Font("Comic Sans", Font.BOLD, 60));
+            button.setFont(new Font("MV Boli", Font.BOLD, 60));
             button.addActionListener(e -> placePiece(button, finalI));
             button.setFocusable(false);
             panel.add(button);
@@ -93,16 +93,12 @@ public class Main {
 
     static void placePiece(JButton button, int place){
         button.setEnabled(false);
-        int turnGameFormat = (isXTurn) ? 1 : 2;
         int row = place/3;
         int col = place % 3;
-        game[row][col] = turnGameFormat;
+        game[row][col] = isXTurn ? 1 : 2;
 
-        if (isXTurn){
-            button.setText("X");
-        } else {
-            button.setText("O");
-        }
+        button.setText(isXTurn ? "X" : "O");
+
         isXTurn = !isXTurn;
         checkForWinners();
         checkForDraw();
