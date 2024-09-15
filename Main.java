@@ -96,12 +96,12 @@ public class Main {
         int row = place/3;
         int col = place % 3;
         game[row][col] = isXTurn ? 1 : 2;
-
         button.setText(isXTurn ? "X" : "O");
-
         isXTurn = !isXTurn;
         checkForWinners();
         checkForDraw();
+        Move bestMove = MinMaxAlgorithm.findBestMove(game, (isXTurn) ? 1 : 2, (isXTurn) ? 2 : 1);
+        System.out.println(bestMove.row + " " + bestMove.col);
         System.out.println(Arrays.deepToString(game));
 
     }
